@@ -1,0 +1,61 @@
+---
+import { EarningIcon, DayIcon, MonthIcon, LastMonthIcon, TradersIcon, OverviewIcon } from "../utils/svg";
+// import Overview from "../components/copytrading/Overview.astro";
+// import Traders from "../components/copytrading/Traders.astro";
+const tempArr = [
+  {title:"Earning", price:345, icon: EarningIcon, background: "#9568FF"},
+  {title:"Day", price:75, icon: DayIcon, background: "#01A3FF"},
+  {title:"Month", price:125, icon: MonthIcon, background:"#1EBA62"},
+  {title:"Last Month", price:45, icon: LastMonthIcon, background:"#EB62D0"},
+]
+
+const tabs = {
+  tabBar:[
+    {icon: OverviewIcon, title: "Overview", id:"overview" },
+    {icon: TradersIcon, title: "Traders", id: "traders" },
+  ], 
+  tabPanel:[
+    {panel:"", id:"overview"}, 
+    {panel:"", id:"traders"}, 
+  ]
+}
+  
+---
+<div
+	class="bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-800 text-slate-800 dark:text-slate-100 mb-20 p-2 lg:p-8 shadow-xl shadow-slate-200 dark:shadow-slate-900"
+>
+  <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-3">
+    <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-emerald-300 from-sky-500">Copy Trading</h2>
+  </div>
+  <div class="mt-5 flex flex-wrap w-full justify-around">
+    {tempArr.map(item=>(
+      <div style={{backgroundColor:item.background}} class="relative flex justify-between w-1/5 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div set:html={item.icon} />
+        <div>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.price}$</h5>
+          <p class="font-normal">{item.title}</p>  
+        </div>
+        
+      </div>
+    ))}
+    
+    
+
+  </div>
+  <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+      {tabs.tabBar.map(tab=>(
+        <li class="mr-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg" id={tab.id} data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><div set:html={tab.icon} />{tab.title}</button>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div id="myTabContent">
+    {tabs.tabPanel.map(item=>(
+      <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id={item.id} role="tabpanel" aria-labelledby="profile-tab">
+        hello
+      </div>
+    ))}
+  </div>
+</div>
