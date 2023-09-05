@@ -1,0 +1,47 @@
+---
+import TraderChart from "../highchart/TraderChart.jsx";
+// const response = await fetch("https://www.bitget.com/v1/trigger/trace/public/overviewTopTraders");
+// const data = await response.json();
+// console.log("data-->", response)
+const tradingDt = [
+  {
+    displayName:"Trading King",
+    userName: "Jame Jack",
+    avatar:""
+  },
+  {
+    displayName:"Trading King",
+    userName: "Jame Jack",
+    avatar:""
+  },
+  {
+    displayName:"Trading King",
+    userName: "Jame Jack",
+    avatar:""
+  },
+  {
+    displayName:"Trading King",
+    userName: "Jame Jack",
+    avatar:""
+  }
+]
+---
+<div class="flex justify-between">
+  {tradingDt.map(trader=>(
+    <div class="flex justify-center flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700">
+      <div class="flex items-center space-x-4">
+          <img class="w-10 h-10 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
+          <div class="font-medium dark:text-white">
+              <div>{trader.displayName}</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">{trader.userName}</div>
+          </div>
+      </div>
+      <TraderChart/>
+      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Copy</button>
+    </div>
+  ))}
+</div>
+
+<script>
+	import './Traders.client.js';
+</script>
